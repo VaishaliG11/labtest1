@@ -1,0 +1,108 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+w1=np.array([120,500,230,75,45])
+w2=np.array([130, 520, 210, 80, 40])
+w3=np.array([125, 530, 220, 70, 50])
+w4=np.array([140,540,200,90,60])
+print("working")
+
+def calculate_total(w1, w2, w3, w4):
+    tot_electronics=tot_groceries=tot_clothing=tot_furniture=tot_stationary=0
+    tot_electronics=w1[0]+w2[0]+w3[0]+w4[0]
+    tot_groceries=w1[1]+w2[1]+w3[1]+w4[1]
+    tot_clothing=w1[2]+w2[2]+w3[2]+w4[2]
+    tot_furniture=w1[3]+w2[3]+w3[3]+w4[3]
+    tot_stationary=w1[4]+w2[4]+w3[4]+w4[4]
+    
+    return tot_electronics, tot_groceries, tot_clothing, tot_furniture, tot_stationary
+week1 = week2 = week3 = week4 =0
+for i in range(5):
+    week1+=w1[i]
+    week2+=w2[i]
+    week3+=w3[i]
+    week4+=w4[i]
+print("Total sales in week1: ",week1)
+print("Total sales in week2: ",week2)
+print("Total sales in week3: ",week3)
+print("Total sales in week4: ",week4)
+
+tot_electronics, tot_groceries, tot_clothing, tot_furniture, tot_stationary= calculate_total(w1, w2, w3, w4)
+tot_electronics=tot_electronics/4
+tot_groceries=tot_groceries/4
+tot_clothing=tot_clothing/4
+tot_furniture=tot_furniture/4
+tot_stationary=tot_stationary/4
+
+print("Avg sales of electronics= ",tot_electronics)
+print("Avg sales of groceries= ",tot_groceries)
+print("Avg sales of clothing= ",tot_clothing)
+print("Avg sales of furniture= ",tot_furniture)
+print("Avg sales of stationary= ",tot_stationary)
+
+electronics=[]
+electronics.append(w1[0])
+electronics.append(w2[0])
+electronics.append(w3[0])
+electronics.append(w4[0])
+print(electronics)
+
+groceries=[]
+groceries.append(w1[1])
+groceries.append(w2[1])
+groceries.append(w3[1])
+groceries.append(w4[1])
+
+clothing=[]
+clothing.append(w1[2])
+clothing.append(w2[2])
+clothing.append(w3[2])
+clothing.append(w4[2])
+
+furniture=[]
+furniture.append(w1[3])
+furniture.append(w2[3])
+furniture.append(w3[3])
+furniture.append(w4[3])
+
+stationary=[]
+stationary.append(w1[4])
+stationary.append(w2[4])
+stationary.append(w3[4])
+stationary.append(w4[4])
+
+weeks=['Week1', 'Week2', 'Week3', 'Week4']
+plt.plot(weeks, electronics, color='red')
+plt.plot(weeks, groceries, color='blue')
+plt.plot(weeks, clothing, color='green')
+plt.plot(weeks, furniture, color='pink')
+plt.plot(weeks, stationary, color='yellow')
+plt.show()
+
+def worst_best(w1, w2, w3, w4):
+    tot_electronics, tot_groceries, tot_clothing, tot_furniture, tot_stationary=calculate_total(w1, w2, w3, w4)
+    totals={}
+    totals["electronics"]=tot_electronics
+    totals["groceries"]=tot_groceries
+    totals["clothing"]=tot_clothing
+    totals["furniture"]=tot_furniture
+    totals["stationary"]=tot_stationary
+    maxx=0
+    max_item=""
+    minn=10000
+    min_item=""
+    for item in totals:
+        if totals[item]>maxx:
+            maxx=totals[item]
+            max_item=item
+        if totals[item]<minn:
+            minn=totals[item]
+            min_item=item
+    print("Best selling item is: ", max_item)
+    print("Worst selling item is: ", min_item)
+    
+    
+worst_best(w1,w2,w3,w4)    
+categories=["Electronics", "Groceries", "Clothing", "Furniture", "Stationary"]
+total_items=[tot_electronics, tot_groceries, tot_clothing, tot_furniture, tot_stationary]
+plt.bar(categories, total_items, color='pink')
